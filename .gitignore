@@ -1,0 +1,11 @@
+*.txt
+*.c
+*.cpp
+*.py
+*.autosave
+Makefile*
+.DS_Store
+._.DS_Store
+*.o
+*.user
+*.user.*
