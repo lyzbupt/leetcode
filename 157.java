@@ -8,20 +8,20 @@ public class Solution extends Reader4 {
      * @return    The number of characters read
      */
     public int read(char[] buf, int n) {
-    	int ans=0;
-    	while(n>0){
-	    	int num = read4(buf);
-	        if(n<=num){
-	        	return ans+n;
-	        }else if(n<=4){
-	        	return ans+num;
-	        }
-	        else{
-	        	ans=ans+4;
-	        	n=n-4;
-	        }
-    	}
-        return 0;
+    	boolean flag = true; // end of file flag
+        int total = 0;
+        char[] temp = new char[4]; // to store read buf, the data destination
 
+        while(flag && total < n){
+            int count = read4(temp);
+            flag = count >= 4;
+            // get the actutal count
+            count = Math.min(count, n - total);
+            // copy from temp buffer to buf 
+            for(int i = 0; i < count; i++){
+                buf[total++] = temp[i];
+            }
+        }
+        return total;
     }
-}å
+}
